@@ -199,32 +199,27 @@ console.log(zoo);
 
 // 20. Within each animal empty object, assign a key/value pair of "timeSlept" and a number indicating the hours of sleep each animal got. (Make this up, obvi)
 console.log('Question 20');
-zoo.lion.timeSlept = 10;
-zoo.tiger.timeSlept = 8;
-zoo.bear.timeSlept = 14;
+for(var key in zoo) {
+  zoo[key].timeSlept = 8;
+}
 console.log(zoo);
 
 // 21. Within each animal object, assign a object pair consisting of a key called "meals" and an empty array as the value.
 console.log('Question 21');
-// for(i = 0; i < zoo[0].length) {
-//   var meals = 2;
-//   zoo[i].meals = meals + 2;
-// }
+for(var key in zoo) {
+  zoo[key].meals = [];
+}
 
-zoo.lion.meals = [];
-zoo.tiger.meals = [];
-zoo.bear.meals = [];
 console.log(zoo);
 
 
 // 22. Within each animal's meals array, create two objects with keys of "monday" and "wednesday". You only feed those jerks twice a week. It's fine.
 console.log('Question 22');
-zoo.lion.meals.monday = {};
-zoo.tiger.meals.monday = {};
-zoo.bear.meals.monday = {};
-zoo.lion.meals.wednesday = {};
-zoo.tiger.meals.wednesday = {};
-zoo.bear.meals.wednesday = {};
+for(var key in zoo) {
+  zoo[key].meals.push({monday: {}});
+  zoo[key].meals.push({wednesday: {}});
+}
+
 console.log(zoo);
 
 // 23. In the individual days of the week, create an object with the key of each meal ("breakfast", "lunch", "dinner") and a made up value of what they ate.
@@ -270,19 +265,7 @@ zoo.bear.meals = [ {
     lunch: "More Salmon",
     dinner: "Zookeeper"
   }
-}]
-
-// That array should look like this (within the meals object, within the animal object, within the zoo object):
-  [ { monday: {
-    breakfast: "cheetos on top of greek yogurt",
-    lunch: "6 gallons of Diet Coke",
-    dinner: "leftover lasagna"
-  }},
-   {wednesday: {
-    breakfast: "cashews, diced apples, tuna, grapes, BubbleYum",
-    lunch: "a ham and cheddar lunchable",
-    dinner: "I put my thing down, flip it, and reverse it"
-  }}]
+}];
 
 // 24. Damn it. The night zookeeper just informed you that your second animal took a nap right before bed time. Add two hours to his "timeSlept" value.
 console.log('Question 24');
@@ -298,8 +281,13 @@ console.log(zoo);
 
 // 26. Your first animal just tossed his lunch at the zoo visitors. Change his monday lunch value to an empty string.
 console.log('Question 26');
-zoo.lion.meals.monday.lunch = '';
-console.log(zoo.lion.meals.monday.lunch);
+for (i=0; i<zoo.lion.meals.length;i++) {
+  if (zoo.lion.meals[i].hasOwnProperty("monday")) {
+    zoo.lion.meals[i].monday.lunch = "";
+  }
+}
+
+console.log(zoo.lion);
 
 // 27. You know your "zoo" object? The owner wants to add zookeepers to the object, too. But before we do that, we need to make sure
 // the animals stay separate from the zookeepers. To do this, create an object within the "zoo" object. The key will be "animals" and the value will be an array
@@ -311,23 +299,16 @@ console.log(zoo.animals);
 // 28. To the "zoo" object, add an object named "zookeepers" with the value being and empty object.
 console.log('Question 28');
 zoo.zookeepers = {};
-console.log(zookeepers);
+console.log(zoo.zookeepers);
 
 // 29. To the empty "zookeepers" object, add two objects with their keys being two names and their values being an empty object.
 console.log('Question 29');
+zoo.zookeepers.Jim = {};
+zoo.zookeepers.Jane = {};
 
 // 30. This joker wants you to add the "hireDate" for each zookeeper. Within the empty array attached to each name, assign a key/value pair of
 // "hireDate" and the value being a string of hire date.
 console.log('Question 30');
-zoo.zookeepers = [{
-  Jim: {
-    hireDate: 'July 5th, 2000'
-  },
-  Jane: {
-    hireDate: 'June 12, 1989'
-  }
-}]
-
-
-
-
+zoo.zookeepers.Jim.hireDate = 'July 5th, 2000';
+zoo.zookeepers.Jane.hireDate = 'June 12, 1989';
+console.log(zoo.zookeepers);
